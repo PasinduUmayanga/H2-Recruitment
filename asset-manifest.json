@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/github.io.H2-Recruitment/static/css/main.a471845e.css",
+    "main.js": "/github.io.H2-Recruitment/static/js/main.978f1c06.js",
+    "static/js/787.4e7aad5b.chunk.js": "/github.io.H2-Recruitment/static/js/787.4e7aad5b.chunk.js",
+    "index.html": "/github.io.H2-Recruitment/index.html",
+    "main.a471845e.css.map": "/github.io.H2-Recruitment/static/css/main.a471845e.css.map",
+    "main.978f1c06.js.map": "/github.io.H2-Recruitment/static/js/main.978f1c06.js.map",
+    "787.4e7aad5b.chunk.js.map": "/github.io.H2-Recruitment/static/js/787.4e7aad5b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a471845e.css",
+    "static/js/main.978f1c06.js"
+  ]
+}
