@@ -4,6 +4,6 @@ export interface CandidateDTO {
     LastName: string;
     DBO: string;
     Option1: boolean;
-    Option2: boolean;
+    Designation: number;
   };
 }
