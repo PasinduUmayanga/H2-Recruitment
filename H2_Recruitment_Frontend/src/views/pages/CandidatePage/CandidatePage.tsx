@@ -9,6 +9,8 @@ import H2RCheckBox from "../../../common/components/H2RCheckBox/H2RCheckBox";
 import { Grid, RadioGroup } from "@mui/material";
 import H2RRadioButton from "../../../common/components/H2RRadioButton/H2RRadioButton";
 import { EnumAttributeType } from "../../../common/components/H2RRadioButton/H2RRadioButton.enum";
+import H2RTextArea from "../../../common/components/H2RTextArea/H2RTextArea";
+import { EnumTextAreaType } from "../../../common/components/H2RTextArea/H2RTextArea.enum";
 
 const CandidatePage = () => {
   // initial page state object
@@ -19,6 +21,11 @@ const CandidatePage = () => {
       DBO: "",
       Option1: false,
       Designation: 1,
+    },
+    Remarks: {
+      Remark1: "",
+      Remark2: "",
+      Remark3: "",
     },
   };
 
@@ -71,6 +78,31 @@ const CandidatePage = () => {
       };
     });
   };
+
+  const onTextAreahandle = (name: string, value: any) => {
+    setCandidatePageState((values) => {
+      return {
+        ...values,
+        Remarks: {
+          ...values.Remarks,
+          [name]: value,
+        },
+      };
+    });
+  };
+
+  const onTextEditorhandle = (name: string, value: any) => {
+    setCandidatePageState((values) => {
+      return {
+        ...values,
+        Remarks: {
+          ...values.Remarks,
+          [name]: value,
+        },
+      };
+    });
+  };
+
   const handleSaveButtonClick = () => {
     console.log("Candidate Data:", candidatePageState);
   };
@@ -88,7 +120,6 @@ const CandidatePage = () => {
           Required={true}
           onTextBoxChange={(name, value) => handleTextBoxChange(name, value)}
         ></H2RTextBox>
-
         <H2RTextBox
           Id="lastName"
           Label="last Name"
@@ -98,7 +129,6 @@ const CandidatePage = () => {
           Required={true}
           onTextBoxChange={(name, value) => handleTextBoxChange(name, value)}
         ></H2RTextBox>
-
         <H2RDatePicker
           Label={"Date of Birth"}
           Name={"DBO"}
@@ -106,7 +136,6 @@ const CandidatePage = () => {
           Value={candidatePageState.Candidate.DBO}
           onDateChange={handleDatePickerChange}
         ></H2RDatePicker>
-
         <fieldset>
           <legend>Checkbox Options</legend>
           <div className="form-group-sub">
@@ -119,7 +148,6 @@ const CandidatePage = () => {
             ></H2RCheckBox>
           </div>
         </fieldset>
-
         <fieldset>
           <legend>Designation</legend>
           <Grid item lg={8} md={8} sm={12} xs={12}>
@@ -183,7 +211,25 @@ const CandidatePage = () => {
             </RadioGroup>
           </Grid>
         </fieldset>
-
+        <br />
+        <H2RTextArea
+          Name="Remark1"
+          Label={"Remark 1"}
+          Value={candidatePageState.Remarks.Remark1}
+          onTextAreaChange={(name, value) => onTextAreahandle(name, value)}
+          Type={EnumTextAreaType.Text}
+          ClassName={"h2r-textarea"}
+        ></H2RTextArea>
+        <br /> <br />
+        <H2RTextArea
+          Name="Remark2"
+          Label={"Remark 2"}
+          Value={candidatePageState.Remarks.Remark2}
+          onTextAreaChange={(name, value) => onTextAreahandle(name, value)}
+          Type={EnumTextAreaType.Text}
+          ClassName={"h2r-textarea"}
+        ></H2RTextArea>
+        <br />
         <br />
         <Button variant="contained" onClick={handleSaveButtonClick}>
           Save
