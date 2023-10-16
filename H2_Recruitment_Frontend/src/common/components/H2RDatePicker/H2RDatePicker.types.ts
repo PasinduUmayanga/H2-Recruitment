@@ -9,7 +9,6 @@ export interface H2RDatePickerProps {
   Name: string;
   Disabled?: boolean;
   DefaultValue?: string;
-  Required?: boolean;
   onDateChange?: (name: string, date: string) => void;
   IsDisabledDate?: (currentdate: dayjs.Dayjs) => boolean;
 }

@@ -31,6 +31,7 @@ const H2RTextBox = (props: H2RTextBoxProps) => {
           label={props.Label}
           name={props.Name}
           multiline={props.MultiLine}
+          required={props.Required}
           type={
             props.MultiLine
               ? "text"

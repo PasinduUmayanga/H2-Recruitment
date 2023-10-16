@@ -22,27 +22,18 @@ const H2RDatePicker = (props: H2RDatePickerProps) => {
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      {props.Type === EnumDatePickerType.DateOnly ? (
-        <>
-          {" "}
-          <DemoContainer components={["DatePicker"]}>
-            <DatePicker
-              label={props.Label}
-              value={date ?? null}
-              onChange={(newDate) => {
-                if (newDate !== null) {
-                  OnChangeDate(newDate, "DD-MM-YYYY");
-                } else {
-                  // OnChangeDate(null, "DD-MM-YYYY");
-                }
-              }}
-              format="DD-MM-YYYY"
-            />
-          </DemoContainer>
-        </>
-      ) : (
-        ""
-      )}
+      <DemoContainer components={["DatePicker"]}>
+        <DatePicker
+          label={props.Label}
+          onChange={(DBODate: Dayjs | null) => {
+            if (DBODate !== null) {
+              OnChangeDate(DBODate, "DD-MM-YYYY");
+            } else {
+            }
+          }}
+          format="DD-MM-YYYY"
+        />
+      </DemoContainer>
     </LocalizationProvider>
   );
 };
