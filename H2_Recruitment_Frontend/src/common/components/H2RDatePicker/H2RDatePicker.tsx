@@ -32,6 +32,8 @@ const H2RDatePicker = (props: H2RDatePickerProps) => {
             }
           }}
           format="DD-MM-YYYY"
+          disableFuture={props.DisableFuture}
+          disablePast={props.DisablePast}
         />
       </DemoContainer>
     </LocalizationProvider>

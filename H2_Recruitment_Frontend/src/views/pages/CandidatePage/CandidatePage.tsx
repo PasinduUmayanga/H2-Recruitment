@@ -11,6 +11,8 @@ import H2RRadioButton from "../../../common/components/H2RRadioButton/H2RRadioBu
 import { EnumAttributeType } from "../../../common/components/H2RRadioButton/H2RRadioButton.enum";
 import H2RTextArea from "../../../common/components/H2RTextArea/H2RTextArea";
 import { EnumTextAreaType } from "../../../common/components/H2RTextArea/H2RTextArea.enum";
+import H2RTextEditor from "../../../common/components/H2RTextEditor/H2RTextEditor";
+import axios from "axios";
 
 const CandidatePage = () => {
   // initial page state object
@@ -19,8 +21,9 @@ const CandidatePage = () => {
       FirstName: "",
       LastName: "",
       DBO: "",
+      InterDate: "",
       Option1: false,
-      Designation: 1,
+      Designation: NaN,
     },
     Remarks: {
       Remark1: "",
@@ -91,20 +94,28 @@ const CandidatePage = () => {
     });
   };
 
-  const onTextEditorhandle = (name: string, value: any) => {
+  const onTextEditorhandle = (value: string) => {
     setCandidatePageState((values) => {
       return {
         ...values,
         Remarks: {
           ...values.Remarks,
-          [name]: value,
+          ["Remark3"]: value,
         },
       };
     });
   };
 
   const handleSaveButtonClick = () => {
-    console.log("Candidate Data:", candidatePageState);
+    const CandidateData = candidatePageState;
+    axios
+      .post("", CandidateData)
+      .then((response) => {
+        console.log("Candidate Data:", candidatePageState);
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      });
   };
 
   return (
@@ -135,6 +146,15 @@ const CandidatePage = () => {
           Type={2}
           Value={candidatePageState.Candidate.DBO}
           onDateChange={handleDatePickerChange}
+          DisableFuture={true}
+        ></H2RDatePicker>
+        <H2RDatePicker
+          Label={"Interview Date"}
+          Name={"InterDate"}
+          Type={2}
+          Value={candidatePageState.Candidate.InterDate}
+          onDateChange={handleDatePickerChange}
+          DisablePast={true}
         ></H2RDatePicker>
         <fieldset>
           <legend>Checkbox Options</legend>
@@ -231,6 +251,11 @@ const CandidatePage = () => {
         ></H2RTextArea>
         <br />
         <br />
+        <H2RTextEditor
+          Data={candidatePageState.Remarks.Remark3}
+          onTextEditorChange={onTextEditorhandle}
+        ></H2RTextEditor>
+        <br></br>
         <Button variant="contained" onClick={handleSaveButtonClick}>
           Save
         </Button>

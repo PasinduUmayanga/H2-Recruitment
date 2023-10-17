@@ -3,6 +3,7 @@ export interface CandidateDTO {
     FirstName: string;
     LastName: string;
     DBO: string;
+    InterDate: string;
     Option1: boolean;
     Designation: number;
   };
