@@ -13,6 +13,12 @@ const Home = () => {
           isMultiple
           options={top100Films}
         />
+
+        <H2RDropDownSelect
+          id="disable-clearable"
+          isMultiple
+          options={top100Films}
+        />
       </div>
     </>
   );
