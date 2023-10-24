@@ -1,0 +1,12 @@
+E:\H2\H2-Recruitment\H2_Recruitment_Backend\H2R.Domain\H2R.Domain\bin\Debug\net7.0\H2R.Domain.deps.json
+E:\H2\H2-Recruitment\H2_Recruitment_Backend\H2R.Domain\H2R.Domain\bin\Debug\net7.0\H2R.Domain.dll
+E:\H2\H2-Recruitment\H2_Recruitment_Backend\H2R.Domain\H2R.Domain\bin\Debug\net7.0\H2R.Domain.pdb
+E:\H2\H2-Recruitment\H2_Recruitment_Backend\H2R.Domain\H2R.Domain\obj\Debug\net7.0\H2R.Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\H2\H2-Recruitment\H2_Recruitment_Backend\H2R.Domain\H2R.Domain\obj\Debug\net7.0\H2R.Domain.AssemblyInfoInputs.cache
+E:\H2\H2-Recruitment\H2_Recruitment_Backend\H2R.Domain\H2R.Domain\obj\Debug\net7.0\H2R.Domain.AssemblyInfo.cs
+E:\H2\H2-Recruitment\H2_Recruitment_Backend\H2R.Domain\H2R.Domain\obj\Debug\net7.0\H2R.Domain.csproj.CoreCompileInputs.cache
+E:\H2\H2-Recruitment\H2_Recruitment_Backend\H2R.Domain\H2R.Domain\obj\Debug\net7.0\H2R.Domain.dll
+E:\H2\H2-Recruitment\H2_Recruitment_Backend\H2R.Domain\H2R.Domain\obj\Debug\net7.0\refint\H2R.Domain.dll
+E:\H2\H2-Recruitment\H2_Recruitment_Backend\H2R.Domain\H2R.Domain\obj\Debug\net7.0\H2R.Domain.pdb
+E:\H2\H2-Recruitment\H2_Recruitment_Backend\H2R.Domain\H2R.Domain\obj\Debug\net7.0\ref\H2R.Domain.dll
+E:\H2\H2-Recruitment\H2_Recruitment_Backend\H2R.Domain\H2R.Domain\obj\Debug\net7.0\H2R.Domain.csproj.AssemblyReference.cache

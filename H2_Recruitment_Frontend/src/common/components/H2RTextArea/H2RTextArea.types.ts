@@ -5,12 +5,12 @@ export interface H2RTextAreaProps {
   Label: string;
   Name?: string;
   Value: any;
-  Type: EnumTextAreaType;
+  Type?: EnumTextAreaType;
   Required?: boolean;
   Disabled?: boolean;
   Error?: boolean;
   HelperText?: string;
   InputProps?: object; // set other property ex:- maxLength
-  ClassName: string;
+  ClassName?: string;
   onTextAreaChange?: (name: string, value: string) => void;
 }

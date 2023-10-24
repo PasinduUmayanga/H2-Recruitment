@@ -2,7 +2,7 @@ import { EnumTextBoxType } from "./H2RTextBox.enum";
 
 export interface H2RTextBoxProps {
   Id?: string;
-  Label?: string;
+  Label: string;
   Name: string;
   Value: string;
   Type: EnumTextBoxType;

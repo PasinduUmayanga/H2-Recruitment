@@ -11,26 +11,41 @@ import H2RRadioButton from "../../../common/components/H2RRadioButton/H2RRadioBu
 import { EnumAttributeType } from "../../../common/components/H2RRadioButton/H2RRadioButton.enum";
 import H2RTextArea from "../../../common/components/H2RTextArea/H2RTextArea";
 import { EnumTextAreaType } from "../../../common/components/H2RTextArea/H2RTextArea.enum";
+import axios from "axios";
 
 const CandidatePage = () => {
   // initial page state object
-  const initialState: CandidateDTO = {
+  const initialState = {
     Candidate: {
       FirstName: "",
+      MiddleName: "",
       LastName: "",
+      CreatedDate: "",
       DBO: "",
+      InterviewDate: "",
       Option1: false,
-      Designation: 1,
-    },
-    Remarks: {
+      Designation: NaN,
       Remark1: "",
       Remark2: "",
       Remark3: "",
-    },
+    } as CandidateDTO,
   };
 
   const [candidatePageState, setCandidatePageState] = useState(initialState);
 
+  const handleSaveButtonClick = () => {
+    const candidateData = candidatePageState.Candidate;
+    // console.log(candidateData);
+    axios
+      .post("https://localhost:7110/api/H2R/SaveCandidate", candidateData)
+      .then((response) => {
+        const data = response.data;
+        console.log("Backend response:", data);
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      });
+  };
   const handleTextBoxChange = (name: string, value: any) => {
     setCandidatePageState((values) => {
       return {
@@ -83,28 +98,12 @@ const CandidatePage = () => {
     setCandidatePageState((values) => {
       return {
         ...values,
-        Remarks: {
-          ...values.Remarks,
+        Candidate: {
+          ...values.Candidate,
           [name]: value,
         },
       };
     });
-  };
-
-  const onTextEditorhandle = (name: string, value: any) => {
-    setCandidatePageState((values) => {
-      return {
-        ...values,
-        Remarks: {
-          ...values.Remarks,
-          [name]: value,
-        },
-      };
-    });
-  };
-
-  const handleSaveButtonClick = () => {
-    console.log("Candidate Data:", candidatePageState);
   };
 
   return (
@@ -135,6 +134,15 @@ const CandidatePage = () => {
           Type={2}
           Value={candidatePageState.Candidate.DBO}
           onDateChange={handleDatePickerChange}
+          DisableFuture={true}
+        ></H2RDatePicker>
+        <H2RDatePicker
+          Label={"Interview Date"}
+          Name={"InterviewDate"}
+          Type={2}
+          Value={candidatePageState.Candidate.InterviewDate}
+          onDateChange={handleDatePickerChange}
+          DisablePast={true}
         ></H2RDatePicker>
         <fieldset>
           <legend>Checkbox Options</legend>
@@ -215,7 +223,7 @@ const CandidatePage = () => {
         <H2RTextArea
           Name="Remark1"
           Label={"Remark 1"}
-          Value={candidatePageState.Remarks.Remark1}
+          Value={candidatePageState.Candidate.Remark1}
           onTextAreaChange={(name, value) => onTextAreahandle(name, value)}
           Type={EnumTextAreaType.Text}
           ClassName={"h2r-textarea"}
@@ -224,7 +232,7 @@ const CandidatePage = () => {
         <H2RTextArea
           Name="Remark2"
           Label={"Remark 2"}
-          Value={candidatePageState.Remarks.Remark2}
+          Value={candidatePageState.Candidate.Remark2}
           onTextAreaChange={(name, value) => onTextAreahandle(name, value)}
           Type={EnumTextAreaType.Text}
           ClassName={"h2r-textarea"}
