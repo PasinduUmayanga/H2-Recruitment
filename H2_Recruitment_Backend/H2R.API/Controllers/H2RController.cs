@@ -16,8 +16,8 @@ namespace H2R.API.Controllers
             connectionString = configuration.GetConnectionString("SqlServerDb") ?? "";
         }
 
-        [HttpPost("TestCandidate")]
-        public ActionResponse TestCandidateData(TestDTO testDTO)
+        [HttpPost("SaveCandidate")]
+        public ActionResponse TestCandidateData(CandidateDTO candidateDTO)
         {
             try
             {
@@ -30,35 +30,25 @@ namespace H2R.API.Controllers
                     {
 
                         // Add parameters
-                        command.Parameters.AddWithValue("@V1", testDTO.FirstName);
-                        command.Parameters.AddWithValue("@V2", testDTO.MiddleName);
-                        command.Parameters.AddWithValue("@V3", testDTO.LastName);
-                        command.Parameters.AddWithValue("@V4", testDTO.DBO);
+                        command.Parameters.AddWithValue("@V1", candidateDTO.FirstName);
+                        command.Parameters.AddWithValue("@V2", candidateDTO.MiddleName);
+                        command.Parameters.AddWithValue("@V3", candidateDTO.LastName);
+                        command.Parameters.AddWithValue("@V4", candidateDTO.DBO);
 
                         command.ExecuteNonQuery();
                     }
                 }
             }
-            catch (Exception ex)
-            {
+            catch (Exception ex)            {
                 Debug.WriteLine("Error: " + ex.Message);
             }
 
             return new ActionResponse()
             {
-                Data = testDTO
-            };
-        }
-
-
-        [HttpPost("SaveCandidate")]
-        public ActionResponse SaveCandidateData(CandidateDTO candidateDTO)
-        {
-            return new ActionResponse()
-            {
                 Data = candidateDTO
             };
         }
+
 
     }
 }

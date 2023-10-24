@@ -3,7 +3,6 @@ import "./CandidatePage.css";
 import H2RTextBox from "../../../common/components/H2RTextBox/H2RTextBox";
 import { EnumTextBoxType } from "../../../common/components/H2RTextBox/H2RTextBox.enum";
 import H2RDatePicker from "../../../common/components/H2RDatePicker/H2RDatePicker";
-import { CandidateDTO } from "../../../common/types/common.dto.types";
 import Button from "@mui/material/Button";
 import H2RCheckBox from "../../../common/components/H2RCheckBox/H2RCheckBox";
 import { Grid, RadioGroup } from "@mui/material";
@@ -11,7 +10,9 @@ import H2RRadioButton from "../../../common/components/H2RRadioButton/H2RRadioBu
 import { EnumAttributeType } from "../../../common/components/H2RRadioButton/H2RRadioButton.enum";
 import H2RTextArea from "../../../common/components/H2RTextArea/H2RTextArea";
 import { EnumTextAreaType } from "../../../common/components/H2RTextArea/H2RTextArea.enum";
+import H2RTextEditor from "../../../common/components/H2RTextEditor/H2RTextEditor";
 import axios from "axios";
+import { BaseDTO } from "../../../common/types/common.dto.types";
 
 const CandidatePage = () => {
   // initial page state object
@@ -20,32 +21,18 @@ const CandidatePage = () => {
       FirstName: "",
       MiddleName: "",
       LastName: "",
-      CreatedDate: "",
       DBO: "",
-      InterviewDate: "",
-      Option1: false,
-      Designation: NaN,
-      Remark1: "",
-      Remark2: "",
-      Remark3: "",
-    } as CandidateDTO,
+    } as BaseDTO,
   };
 
   const [candidatePageState, setCandidatePageState] = useState(initialState);
 
   const handleSaveButtonClick = () => {
-    const candidateData = candidatePageState.Candidate;
-    // console.log(candidateData);
-    axios
-      .post("https://localhost:7110/api/H2R/SaveCandidate", candidateData)
-      .then((response) => {
-        const data = response.data;
-        console.log("Backend response:", data);
-      })
-      .catch((error) => {
-        console.log("Error:", error);
-      });
+    const CandidateData = candidatePageState.Candidate;
+    console.log(CandidateData);
+    axios.post("https://localhost:7110/api/H2R/SaveCandidate", CandidateData);
   };
+
   const handleTextBoxChange = (name: string, value: any) => {
     setCandidatePageState((values) => {
       return {
@@ -70,62 +57,77 @@ const CandidatePage = () => {
     });
   };
 
-  const handleCheckboxChange = (name: string, isChecked: boolean) => {
-    setCandidatePageState((values) => {
-      return {
-        ...values,
-        Candidate: {
-          ...values.Candidate,
-          [name]: isChecked,
-        },
-      };
-    });
-  };
+  // const handleCheckboxChange = (name: string, isChecked: boolean) => {
+  //   setCandidatePageState((values) => {
+  //     return {
+  //       ...values,
+  //       Candidate: {
+  //         ...values.Candidate,
+  //         [name]: isChecked,
+  //       },
+  //     };
+  //   });
+  // };
 
-  const handleGenderSelection = (name: string, value: any) => {
-    setCandidatePageState((values) => {
-      return {
-        ...values,
-        Candidate: {
-          ...values.Candidate,
-          [name]: value,
-        },
-      };
-    });
-  };
+  // const handleGenderSelection = (name: string, value: any) => {
+  //   setCandidatePageState((values) => {
+  //     return {
+  //       ...values,
+  //       Candidate: {
+  //         ...values.Candidate,
+  //         [name]: value,
+  //       },
+  //     };
+  //   });
+  // };
 
-  const onTextAreahandle = (name: string, value: any) => {
-    setCandidatePageState((values) => {
-      return {
-        ...values,
-        Candidate: {
-          ...values.Candidate,
-          [name]: value,
-        },
-      };
-    });
-  };
+  // const onTextAreahandle = (name: string, value: any) => {
+  //   setCandidatePageState((values) => {
+  //     return {
+  //       ...values,
+  //       Candidate: {
+  //         ...values.Candidate,
+  //         [name]: value,
+  //       },
+  //     };
+  //   });
+  // };
+
+  // const onTextEditorhandle = (value: string) => {
+  //   setCandidatePageState((values) => {
+  //     return {
+  //       ...values,
+  //       Candidate: {
+  //         ...values.Candidate,
+  //         ["Remark3"]: value,
+  //       },
+  //     };
+  //   });
+  // };
 
   return (
     <div className="container">
       <h2>Candidate Page</h2> <br />
       <div className="form-group lg-20">
         <H2RTextBox
-          Id="firstName"
-          Label="First Name"
           Name="FirstName"
           Value={candidatePageState.Candidate.FirstName}
           Type={EnumTextBoxType.Text}
-          Required={true}
+          Label="First Name"
           onTextBoxChange={(name, value) => handleTextBoxChange(name, value)}
         ></H2RTextBox>
         <H2RTextBox
-          Id="lastName"
-          Label="last Name"
+          Name="MiddleName"
+          Value={candidatePageState.Candidate.MiddleName}
+          Type={EnumTextBoxType.Text}
+          Label="Middle Name"
+          onTextBoxChange={(name, value) => handleTextBoxChange(name, value)}
+        ></H2RTextBox>
+        <H2RTextBox
           Name="LastName"
           Value={candidatePageState.Candidate.LastName}
           Type={EnumTextBoxType.Text}
-          Required={true}
+          Label="Last Name"
           onTextBoxChange={(name, value) => handleTextBoxChange(name, value)}
         ></H2RTextBox>
         <H2RDatePicker
@@ -136,7 +138,16 @@ const CandidatePage = () => {
           onDateChange={handleDatePickerChange}
           DisableFuture={true}
         ></H2RDatePicker>
-        <H2RDatePicker
+        <br></br>
+        <Button
+          variant="contained"
+          startIcon=""
+          size="large"
+          onClick={handleSaveButtonClick}
+        >
+          Save
+        </Button>
+        {/* <H2RDatePicker
           Label={"Interview Date"}
           Name={"InterviewDate"}
           Type={2}
@@ -239,9 +250,10 @@ const CandidatePage = () => {
         ></H2RTextArea>
         <br />
         <br />
-        <Button variant="contained" onClick={handleSaveButtonClick}>
-          Save
-        </Button>
+        <H2RTextEditor
+          Data={candidatePageState.Candidate.Remark3}
+          onTextEditorChange={onTextEditorhandle}
+        ></H2RTextEditor> */}
       </div>
     </div>
   );
