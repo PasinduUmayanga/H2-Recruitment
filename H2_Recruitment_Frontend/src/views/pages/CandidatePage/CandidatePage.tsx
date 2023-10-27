@@ -12,7 +12,9 @@ import H2RTextArea from "../../../common/components/H2RTextArea/H2RTextArea";
 import { EnumTextAreaType } from "../../../common/components/H2RTextArea/H2RTextArea.enum";
 import H2RTextEditor from "../../../common/components/H2RTextEditor/H2RTextEditor";
 import axios from "axios";
-import { BaseDTO } from "../../../common/types/common.dto.types";
+import { CandidateDTO } from "../../../common/types/common.dto.types";
+import { useDispatch, useSelector } from "react-redux";
+import { saveCandidate } from "./CandidatePage.action";
 
 const CandidatePage = () => {
   // initial page state object
@@ -22,15 +24,18 @@ const CandidatePage = () => {
       MiddleName: "",
       LastName: "",
       DBO: "",
-    } as BaseDTO,
+    } as CandidateDTO,
   };
 
   const [candidatePageState, setCandidatePageState] = useState(initialState);
+  const dispatch = useDispatch();
 
   const handleSaveButtonClick = () => {
     const CandidateData = candidatePageState.Candidate;
-    console.log(CandidateData);
-    axios.post("https://localhost:7110/api/H2R/SaveCandidate", CandidateData);
+    dispatch(saveCandidate(CandidateData));
+
+    // // console.log(CandidateData);
+    // // axios.post("https://localhost:7110/api/H2R/SaveCandidate", CandidateData);
   };
 
   const handleTextBoxChange = (name: string, value: any) => {
@@ -147,6 +152,7 @@ const CandidatePage = () => {
         >
           Save
         </Button>
+
         {/* <H2RDatePicker
           Label={"Interview Date"}
           Name={"InterviewDate"}
